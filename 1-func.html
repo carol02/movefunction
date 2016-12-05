@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				//var btn=document.getElementById('btn');
+				//var div1=document.getElementById('div1');
+				getId('btn').onclick=function(){
+					alert(getId('div1').innerHTML);
+				}
+			}
+			function getId(id){
+				return document.getElementById(id);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn" value="按钮" />
+		<div id="div1">123</div>
+	</body>
+</html>

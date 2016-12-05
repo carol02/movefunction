@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 600px;
+				height: 400px;
+				margin: 0 auto;
+				position: relative;
+				cursor: pointer;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			#top li{
+				width: 150px;
+				height: 30px;
+				float: left;
+				line-height: 30px;
+				text-align: center;
+				margin-right: 15px;
+				background: palevioletred;
+			}
+			#rt{
+				position: absolute;
+				left: 320px;
+				top: 30px;
+			}
+			#rt li{
+				width: 150px;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				margin-bottom: 15px;
+				margin-top: 5px;
+				background: pink;
+			}
+			img{
+				width: 320px;
+				height: 350px;
+			}
+			#top .act{
+				background: palegreen;
+			}
+			#rt .act1{
+				background: paleturquoise;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var arr=[
+					['动起来','发会呆','送给你','可爱蛋蛋'],
+					['小黄人','小栗鼠','牛仔很忙','泳圈']
+				];
+				var imgs=[
+					['img1/1.jpg','img1/2.jpg','img1/3.jpg','img1/7.jpg'],
+					['img1/4.jpg','img1/5.jpg','img1/14.jpg','img1/11.jpg']
+				];
+				var pic=document.getElementsByTagName('img')[0];
+				var tp=document.getElementById('top');
+				var rt=document.getElementById('rt');
+				var lis1=tp.getElementsByTagName('li');
+				var lis2=rt.getElementsByTagName('li');
+				var box=document.getElementById('box');
+				var timer=null;
+				var numb=0;
+				
+				//图片和选项卡自动切换
+				fn();
+				function fn(){
+					var num=numb;
+					timer=setInterval(function(){
+						for (var i=0;i<lis1.length;i++) {
+							if(lis1[i].className=='act'){
+								for (var j=0;j<lis2.length;j++) {
+									lis2[j].className='';
+								}
+								num++;
+								
+								//当图片切换至最后一张时切换上边的菜单栏
+								if(num>lis2.length-1){
+									//console.log(num)
+									num=0;
+									i++;
+									i%=lis1.length;
+									for (var z=0;z<lis1.length;z++) {
+										lis1[z].className='';
+									}
+									for (var j=0;j<lis2.length;j++) {
+										lis2[j].innerHTML=arr[i][j];
+									}
+									lis1[i].className='act';
+								}
+								
+								pic.src=imgs[i][num];
+								lis2[num].className='act1';
+							}
+						}
+					},1000)
+				}
+				//鼠标移入清除定时器
+				box.onmouseover=function(){
+					clearInterval(timer);
+				}
+				//鼠标出继续切换
+				box.onmouseout=function(){
+					fn();
+				}
+				//点击切换菜单栏
+				for (var i=0;i<lis1.length;i++) {
+					lis1[i].index=i;
+					lis1[i].onclick=function(){
+						for (var i=0;i<lis1.length;i++) {
+							lis1[i].className='';
+						}
+						this.className='act';
+						for (var i=0;i<lis2.length;i++) {
+							lis2[i].innerHTML=arr[this.index][i];
+							lis2[i].className='';
+						}
+						pic.src=imgs[this.index][0];
+						lis2[0].className='act1';
+						
+						var num2=this.index
+						fn1(num2)
+					}
+				}
+				fn1(0);
+				//点击切换图片
+				function fn1(num2){
+					for (var i=0;i<lis2.length;i++) {
+						lis2[i].index=i;
+						lis2[i].onclick=function(){
+							for (var i=0;i<lis2.length;i++) {
+								lis2[i].className='';
+							}
+							this.className='act1';
+							pic.src=imgs[num2][this.index];
+							
+							numb=this.index;
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="top">
+				<li class="act">呆萌小僵尸</li>
+				<li>蓝胖子和鹿鹿</li>
+			</ul>
+			<img src="img1/1.jpg"/>
+			<ul id="rt">
+				<li class="act1">动起来</li>
+				<li>发会呆</li>
+				<li>送给你</li>
+				<li>可爱蛋蛋</li>
+			</ul>
+		</div>
+	</body>
+</html>

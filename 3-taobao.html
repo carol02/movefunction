@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 584px;
+				height: 405px;
+				border: 2px solid orangered;
+				margin: 0 auto;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+				width: 80px;
+				height: 50px;
+				margin-top: 5px;
+				border: 1px solid #ffadad;
+				text-align: center;
+				line-height: 50px;
+				font-family: "微软雅黑";
+				color: #424242;
+				cursor: pointer;
+			}
+			#lf,#rt,img{
+				float: left;
+				margin-left: 5px;
+			}
+			img{
+				width: 400px;
+				height: 387px;
+				margin-top: 7px;
+			}
+			.active{
+				background: #ff4a6b;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="lf">
+				<li class="active">跳动</li>
+				<li>沉思</li>
+				<li>蠢萌</li>
+				<li>小黄人</li>
+				<li>小栗鼠</li>
+				<li>Yeah</li>
+				<li>蛋蛋</li>
+			</ul>
+			<img src="img1/1.jpg">
+			<ul id="rt">
+				<li>流星</li>
+				<li>夏日</li>
+				<li>花鸟美女</li>
+				<li>蓝胖子</li>
+				<li>大头美女</li>
+				<li>萌兔</li>
+				<li>牛仔蓝胖</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var oBox=document.getElementById('box');
+			var aLi=document.getElementsByTagName('li');
+			var oImg=document.getElementsByTagName('img')[0];
+			var imgs=['img1/1.jpg','img1/2.jpg','img1/3.jpg','img1/4.jpg','img1/5.jpg','img1/6.jpg','img1/7.jpg','img1/8.jpg','img1/9.jpg','img1/10.jpg','img1/11.jpg','img1/12.jpg','img1/13.jpg','img1/14.jpg'];
+			var num=0,
+				timer=null,
+				n=Math.floor(aLi.length/2);
+				
+				//自动循环切换图片
+				fn();
+				
+				//移入li切换图片
+				for (var i=0;i<aLi.length;i++) {
+					aLi[i].index=i;
+					aLi[i].onmouseover=function(){
+						fn1(this,this.index)
+						num=this.index;
+					};
+				}
+				
+				//移入box清除定时器
+				oBox.onmouseover=function(){
+					clearInterval(timer)
+				};
+				//移出box图片继续循环切换
+				oBox.onmouseout=function(){
+					fn(num);
+				};
+				function fn(num1){
+					timer=setInterval(function(){
+						if(num<n){
+							num++;
+							//当num自增到中间值时
+							if(num==n){
+								num=aLi.length-1;
+							}
+						}else{
+							num--;
+							//当num自减到中间值时
+							if(num==n-1){
+								num=0;
+							}
+						}
+						fn1(aLi[num],num);
+					},1000)
+				}
+				function fn1(numb,nub){
+					for (var i=0;i<aLi.length;i++) {
+						aLi[i].className='';
+					}
+					numb.className='active';
+					oImg.src=imgs[nub];
+				}
+		</script>
+	</body>
+</html>

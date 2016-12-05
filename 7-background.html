@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			input{
+				width: 80px;
+				height: 30px;
+			}
+			#box{
+				width: 600px;
+				height: 560px;
+				margin: 0 auto;
+			}
+			#box1{
+				width: 600px;
+				height: 500px;
+				border: 1px solid black;
+				margin-top: 5px;
+				background: url(img/1.jpg) no-repeat;
+				background-position: center;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById('btn');
+				var box1=document.getElementById('box1');
+				var imgs=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+				var num=0;
+				var timer=null;
+				btn.onOff=true;
+				
+				//点击按钮切换状态
+				btn.onclick=function(){
+					if(this.onOff){//点击使背景图片自己循环切换
+						this.value='就它了';
+						timer=setInterval(function(){
+							num++;
+							box1.style.backgroundImage='url('+imgs[num]+')';
+							num%=imgs.length-1;
+						},1000)
+						this.onOff=false;
+					}else{//点击停止切换
+						this.value='换背景吧';
+						clearInterval(timer);
+						this.onOff=true;
+					
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button"  id="btn" value="换背景吧" />
+			<div id="box1"></div>
+		</div>
+	</body>
+</html>

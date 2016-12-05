@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 600px;
+				height: 50px;
+				background: #215a9c;
+				border-radius: 5px;
+				padding-right: 10px;
+				padding-left: 20px;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				cursor: pointer;
+			}
+			li{
+				list-style: none;
+				float: left;
+			}
+			a{
+				text-decoration: none;
+				color: white;
+				line-height: 50px;
+			}
+			#box>a{
+				float: right;
+			}
+			.act{
+				text-align: center;
+				height: 20px;
+				position: relative;
+			}
+			.act ul{
+				position: absolute;
+				top: 60px;
+				left: -20px;
+				height: 30px;
+				width: 280px;
+				border: 1px solid #94b5d6;
+				background: #dee7ef;
+				padding-left: 20px;
+				border-radius: 5px;
+				color: #215a9c;
+			}
+			ul .act #uls1{
+				width: 380px;
+			}
+			ul .act #uls2{
+				width: 320px;
+			}
+			ul .act #uls3{
+				width: 360px;
+			}
+			.act ul i{
+				font-style: normal;
+				padding-left: 2px;
+				padding-right: 10px;
+				color: #7b5ab5;
+				line-height: 30px;
+			}
+			a i{
+				font-style: normal;
+				padding-left: 20px;
+				padding-right: 30px;
+			}
+			.act a span:hover{
+				padding: 5px 15px;
+				background: #84a5c6;
+				border-radius: 10px;
+			}
+			#box1{
+				border: 15px solid transparent;
+				border-bottom-color: #94b5d6;
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 30px;
+				left: 0;
+			}
+			#box2{
+				border: 15px solid transparent;
+				border-bottom-color: #dee7ef;
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 32px;
+				left: 0px;
+				z-index: 10;
+			}
+			.cont{
+				display: none;
+			}
+			.cont1{
+				display: block;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var hs=document.getElementById('hs');
+				var acts=hs.children;
+				var timer=null;
+				
+				//鼠标移入标题栏
+				for (var i=0;i<acts.length;i++) {
+					acts[i].onmouseover=function(){
+						//每次移入都要清除定时器否则每次移入都会开一个定时器，这样就会开多个
+						clearTimeout(timer);
+						for (var i=0;i<acts.length;i++) {
+							acts[i].children[1].className='cont';
+						}
+						this.children[1].className='cont1';
+					}
+					
+					//鼠标移出标题栏
+					acts[i].onmouseout=function(){
+						timer=setTimeout(function(){
+							for (var i=0;i<acts.length;i++) {
+								acts[i].children[1].className='cont';
+							}	
+						},2000)
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="hs">
+				<li class="act">
+					<a href="javascript:;">
+						<span>首页</span>
+						<i>|</i>
+					</a>
+					<div class="cont">
+	                    <em id="box1"></em>
+						<em id="box2"></em>
+						<ul>
+							<li>
+								<span>最近更新</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>活动</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>反馈</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>报名</span>
+								<i>|</i>
+							</li>
+						</ul>
+					</div>
+				</li>
+                <li class="act">
+					<a href="javascript:;">
+						<span>关于我们</span>
+						<i>|</i>
+					</a>
+					<div class="cont">
+	                    <em id="box1"></em>
+						<em id="box2"></em>
+						<ul id="uls1">
+							<li>
+								<span>公司介绍</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>公司理念</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>业务介绍</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>团队介绍</span>
+								<i>|</i>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="act">
+					<a href="javascript:;">
+						<span>作品</span>
+						<i>|</i>
+					</a>
+					<div class="cont">
+	                    <em id="box1"></em>
+						<em id="box2"></em>
+						<ul id="uls2">
+							<li>
+								<span>淘宝</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>途牛旅游网</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>京东</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>qq音乐</span>
+								<i>|</i>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="act">
+					<a href="javascript:;">
+						<span>博客</span>
+						<i>|</i>
+					</a>
+					<div class="cont">
+						<em id="box1"></em>
+						<em id="box2"></em>
+						<ul id="uls3">
+							<li>
+								<span>弹出层效果</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>3D效果</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>JS教程</span>
+								<i>|</i>
+							</li>
+							<li>
+								<span>炫酷时钟</span>
+								<i>|</i>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			<a href="#" id="more">》更多</a>
+		</div>
+	</body>
+</html>

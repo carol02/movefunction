@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 350px;
+				height: 520px;
+				border: 1px solid black;
+				margin: 0 auto;
+				position: relative;
+			}
+			img{
+				width: 350px;
+				height: 520px;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				top: 0;
+				right: -60px;
+			}
+			li{
+				list-style: none;
+				width: 50px;
+				height: 30px;
+				background: orange;
+				margin-bottom: 5px;
+				cursor: pointer;
+			}
+			.act{
+				background: blueviolet;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var imgs=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+				var pic=document.getElementsByTagName('img')[0];
+				var uls=document.getElementsByTagName('ul')[0];
+				var lis=document.getElementsByTagName('li');
+				
+				//生成li
+				var str='';
+				for (var i=0;i<imgs.length;i++) {
+					str+='<li></li>'
+				}
+				uls.innerHTML=str;
+				
+				//初始化页面
+				lis[0].className='act';
+				pic.src=imgs[0];
+				
+				//图片自动切换
+				var num=0;
+				var timer=null;
+				timer=setInterval(function(){
+					for (var i=0;i<imgs.length;i++) {
+						for (var i=0;i<imgs.length;i++) {
+							lis[i].className='';
+						}
+						lis[num].className='act';
+						pic.src=imgs[num];
+						num++;
+						num%=imgs.length;
+					}
+				},1000)
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<img src=""/>
+			<ul></ul>
+		</div>
+	</body>
+</html>
